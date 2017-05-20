@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "A minimal bitcoin price desktop widget",
   "main": "main.js",
-  "scripts": {
-    "start": "electron ."
-  },
   "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [
     "crypti",
@@ -20,6 +17,7 @@
     "electron": "~1.6.2"
   },
   "dependencies": {
+    "material-icons": "^0.1.0",
     "request": "^2.81.0"
   },
   "build": {
@@ -29,6 +27,7 @@
     }
   },
   "scripts": {
+    "start": "electron .",
     "pack": "build --dir",
     "dist": "build",
     "postinstall": "install-app-deps"
