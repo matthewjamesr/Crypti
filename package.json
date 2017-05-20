@@ -21,5 +21,16 @@
   },
   "dependencies": {
     "request": "^2.81.0"
+  },
+  "build": {
+    "appId": "com.github.matthewjamesr.crypti",
+    "mac": {
+      "category": "finance"
+    }
+  },
+  "scripts": {
+    "pack": "build --dir",
+    "dist": "build",
+    "postinstall": "install-app-deps"
   }
 }

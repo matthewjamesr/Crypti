@@ -1,7 +1,0 @@
-div#drag-region {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    height: 15px;
-    width: 100%;
-}
