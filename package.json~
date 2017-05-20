@@ -1,6 +1,6 @@
 {
   "name": "Crypti",
-  "version": "1.0.3",
+  "version": "1.0.0",
   "description": "A minimal bitcoin price desktop widget",
   "main": "main.js",
   "repository": "https://github.com/electron/electron-quick-start",
@@ -10,7 +10,7 @@
     "cryptocurrency",
     "price",
     "widget"
-  ],git a
+  ],
   "author": "Matthew Reichardt",
   "license": "MIT",
   "devDependencies": {
