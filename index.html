@@ -2,18 +2,36 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Hello World!</title>
+    <title>Crypti</title>
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/animate.css" />
   </head>
   <body>
-    <h1>Hello World!</h1>
-    <!-- All of the Node.js APIs are available in this renderer process. -->
-    We are using Node.js <script>document.write(process.versions.node)</script>,
-    Chromium <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
+    <div id="drag-region"></div>
+    <h1 id="btcPrice">Searching....</h1>
+    <img id="btc-icon" src="images/btc-icon.svg" />
+    <p>Current Bitcoin Price</p>
   </body>
 
   <script>
     // You can also require other files to run in this process
     require('./renderer.js')
+
+    var currentPrice = document.getElementById('btcPrice');
+
+    var request = require('request');
+    request('https://api.coinmarketcap.com/v1/ticker/bitcoin/', function(error, response, body) {
+        currentPrice.innerHTML = '$' + JSON.parse(body)[0].price_usd;
+    });
+    var requestLoop = setInterval(function() {
+        request('https://api.coinmarketcap.com/v1/ticker/bitcoin/', function(error, response, body) {
+            currentPrice.innerHTML = '$' + JSON.parse(body)[0].price_usd;
+            
+        });
+    }, 30000);
   </script>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous"></script>
 </html>
