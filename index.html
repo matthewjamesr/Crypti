@@ -27,7 +27,7 @@
 						<li><a href="https://github.com/matthewjamesr/Crypti/releases/latest" class="button special icon fa-download">Download Now</a></li>
 						<li><a href="#one" class="button icon fa-chevron-down scrolly">Learn More</a></li>
 						<li><a class="button icon fa-dollar" id="sendTip" href="https://www.paypal.me/Reichardt" target="_blank">Tip Fiat</a></li>
-						<li><a class="button icon fa-btc" href=" bitcoin:16gHsttasFz8T48MFsfzq199esvWTJGn94?&label=Tip M. Reichardt&message=Tip%20for%20Crypti">Tip BTC</a></li>
+						<li><a class="button icon fa-btc scrolly" href="#three">Tip BTC</a></li>
 					</ul>
 				</div>
 				<!--<div class="image phone"><div class="inner"><img src="images/screen.jpg" alt="" /></div></div>-->
@@ -84,6 +84,26 @@
 				<ul class="actions">
 					<li><a href="https://github.com/matthewjamesr/Crypti/releases/latest" class="button special icon fa-download">Download</a></li>
 				</ul>
+				<div style="font-size:16px;margin:0 auto;width:300px" class="blockchain-btn"
+					 data-address="16gHsttasFz8T48MFsfzq199esvWTJGn94"
+					 data-shared="false">
+					<div class="blockchain stage-begin">
+						<img src="https://blockchain.info/Resources/buttons/donate_64.png"/>
+					</div>
+					<div class="blockchain stage-loading" style="text-align:center">
+						<img src="https://blockchain.info/Resources/loading-large.gif"/>
+					</div>
+					<div class="blockchain stage-ready">
+						 <p align="center">Please Donate To Bitcoin Address: <b>[[address]]</b></p>
+						 <p align="center" class="qr-code"></p>
+					</div>
+					<div class="blockchain stage-paid">
+						 Donation of <b>[[value]] BTC</b> Received. Thank You.
+					</div>
+					<div class="blockchain stage-error">
+						<font color="red">[[error]]</font>
+					</div>
+				</div>
 			</section>
 
 		<!-- Four -->
@@ -420,6 +440,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
+			<script type="text/javascript" src="https://blockchain.info/Resources/js/pay-now-button.js"></script>
 			<script src="assets/js/jquery.scrolly.min.js"></script>
 			<script src="assets/js/skel.min.js"></script>
 			<script src="assets/js/util.js"></script>
