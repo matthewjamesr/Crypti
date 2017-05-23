@@ -13,7 +13,7 @@ let mainWindow
 
 function createWindow () {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 340, height: 115, frame: false})
+  mainWindow = new BrowserWindow({width: 340, height: 115, frame: false, backgroundColor: '#1fc8db'})
   
   
 
