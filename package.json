@@ -1,6 +1,6 @@
 {
   "name": "Crypti",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A minimal bitcoin price desktop widget",
   "main": "main.js",
   "email": "matthewjames3@protonmail.com",
