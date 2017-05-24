@@ -10,10 +10,15 @@ const url = require('url')
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
+let addWindow
 
 function createWindow () {
+  // Get screen size.
+  let screen = electron.screen.getPrimaryDisplay()
+  let dimensions = screen.workAreaSize
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 340, height: 115, frame: false, backgroundColor: '#1fc8db'})
+  mainWindow = new BrowserWindow({width: 340, height: 115, frame: false, backgroundColor: '#1fc8db', x: dimensions.width-375, y: -dimensions.height+60+dimensions.height})
+  addWindow = new BrowserWindow({width: 340, height: 57, frame: false, backgroundColor: '#1fc8db', hasShadow: 'false', x: mainWindow.getPosition()[0], y: mainWindow.getPosition()[1]+135})
   
   
 
@@ -24,10 +29,21 @@ function createWindow () {
     slashes: true
   }))
 
+  addWindow.loadURL(url.format({
+    pathname: path.join(__dirname, 'advertisement.html'),
+    protocol: 'file:',
+    slashes: true
+  }))
+
+  // Make bottom window follow primary when moved in an animated fashion.
+  mainWindow.on('move', function () {
+    addWindow.setPosition(mainWindow.getPosition()[0], mainWindow.getPosition()[1]+135)
+  })
+
   //settingsWindow.show();
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools()
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
@@ -35,6 +51,7 @@ function createWindow () {
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
     mainWindow = null
+    addWindow = null
   })
 }
 
