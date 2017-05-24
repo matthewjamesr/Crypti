@@ -18,7 +18,7 @@ function createWindow () {
   let dimensions = screen.workAreaSize
   // Create the browser window.
   mainWindow = new BrowserWindow({width: 340, height: 115, frame: false, backgroundColor: '#1fc8db', x: dimensions.width-375, y: -dimensions.height+60+dimensions.height})
-  addWindow = new BrowserWindow({width: 340, height: 57, frame: false, backgroundColor: '#1fc8db', hasShadow: 'false', x: mainWindow.getPosition()[0], y: mainWindow.getPosition()[1]+135})
+  addWindow = new BrowserWindow({width: 340, height: 70, frame: false, backgroundColor: '#1fc8db', hasShadow: 'false', x: mainWindow.getPosition()[0], y: mainWindow.getPosition()[1]+135})
   
   
 
@@ -43,7 +43,7 @@ function createWindow () {
   //settingsWindow.show();
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools()
+  //mainWindow.webContents.openDevTools()
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
