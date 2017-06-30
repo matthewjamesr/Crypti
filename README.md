@@ -1,12 +1,6 @@
-# Crypti
+# Hush Messenger
 
-A small Bitcoin price widget for desktops.
-
-![Crypti Image](https://i.redditmedia.com/QC7Xok8QyaNaTgkWq7c4JXbquNnzFdjUUJcc1Lab-EY.png?w=411&s=e271f083a95d4da87a3909912a923a45)
-
-* Keeps you current on Bitcoin to USD conversion
-* Utilized Coinmarketcap.com data
-* Updates every 60 seconds
+Secure messaging with the zcash protocol
 
 ## Platforms
 

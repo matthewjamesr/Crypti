@@ -1,21 +1,20 @@
 {
-  "name": "Crypti",
-  "version": "1.0.4",
-  "description": "A minimal bitcoin price desktop widget",
+  "name": "hush-messenger",
+  "version": "1.0.0",
+  "description": "Secure messaging with the zcash protocol",
   "main": "main.js",
-  "email": "matthewjames3@protonmail.com",
-  "repository": "https://github.com/matthewjamesr/Crypti",
+  "repository": "https://github.com/MyHush/messenger",
   "keywords": [
-    "crypti",
-    "bitcoin",
     "cryptocurrency",
-    "price",
-    "widget"
+    "zcash",
+    "hush",
+    "messaging",
+    "privacy"
   ],
   "author": {
     "name": "Matthew Reichardt",
-    "email": "matthewjames3@protonmail.com",
-    "url": "http://matthewreichardt.com"
+    "email": "matt@myhush.org",
+    "url": "https://myhush.org"
   },
   "license": "MIT",
   "devDependencies": {
@@ -23,13 +22,16 @@
     "electron-builder": "^17.10.0"
   },
   "dependencies": {
+    "bitcoin": "^3.0.1",
+    "delay": "^2.0.0",
     "material-icons": "^0.1.0",
+    "npm": "^4.6.1",
     "request": "^2.81.0"
   },
   "build": {
-    "appId": "com.github.matthewjamesr.crypti",
+    "appId": "com.github.myhush.messenger",
     "mac": {
-      "category": "finance"
+      "category": "messaging"
     }
   },
   "scripts": {

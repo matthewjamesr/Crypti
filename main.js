@@ -6,54 +6,103 @@ const BrowserWindow = electron.BrowserWindow
 
 const path = require('path')
 const url = require('url')
+const {ipcMain} = require('electron')
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let mainWindow
-let addWindow
+let welcomeWindow
+let connectionWindow
+let messengerWindow
 
 function createWindow () {
-  // Get screen size.
-  let screen = electron.screen.getPrimaryDisplay()
-  let dimensions = screen.workAreaSize
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 340, height: 115, frame: false, backgroundColor: '#1fc8db', x: dimensions.width-375, y: -dimensions.height+60+dimensions.height})
-  addWindow = new BrowserWindow({width: 340, height: 70, frame: false, backgroundColor: '#1fc8db', hasShadow: 'false', x: mainWindow.getPosition()[0], y: mainWindow.getPosition()[1]+135})
-  
-  
+  welcomeWindow = new BrowserWindow({width: 500, height: 635, frame: false, backgroundColor: '#fff'})
 
-  // and load the index.html of the app.
-  mainWindow.loadURL(url.format({
-    pathname: path.join(__dirname, 'index.html'),
+  welcomeWindow.loadURL(url.format({
+    pathname: path.join(__dirname, 'views/welcome.html'),
     protocol: 'file:',
     slashes: true
   }))
 
-  addWindow.loadURL(url.format({
-    pathname: path.join(__dirname, 'advertisement.html'),
-    protocol: 'file:',
-    slashes: true
-  }))
-
-  // Make bottom window follow primary when moved in an animated fashion.
-  mainWindow.on('move', function () {
-    addWindow.setPosition(mainWindow.getPosition()[0], mainWindow.getPosition()[1]+135)
-  })
-
-  //settingsWindow.show();
-
-  // Open the DevTools.
-  //mainWindow.webContents.openDevTools()
+  welcomeWindow.webContents.openDevTools()
 
   // Emitted when the window is closed.
-  mainWindow.on('closed', function () {
+  welcomeWindow.on('closed', function () {
     // Dereference the window object, usually you would store windows
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
-    mainWindow = null
-    addWindow = null
+    welcomeWindow = null
   })
 }
+
+ipcMain.on('open-connection-window', function () {
+    if (connectionWindow) {
+        return;
+    }
+
+    connectionWindow = new BrowserWindow({width: 650, height: 310, frame: false, backgroundColor: '#fff'})
+
+    connectionWindow.loadURL(url.format({
+      pathname: path.join(__dirname, 'views/connection.html'),
+      protocol: 'file:',
+      slashes: true
+    }))
+
+    //connectionWindow.webContents.openDevTools()
+
+    connectionWindow.on('closed', function () {
+        connectionWindow = null;
+    })
+})
+
+ipcMain.on('open-messenger-window-startup', function () {
+    if (messengerWindow) {
+        return;
+    }
+
+    let screen = electron.screen.getPrimaryDisplay()
+    let dimensions = screen.workAreaSize
+
+    messengerWindow = new BrowserWindow({width: 340, height: 115, frame: false, backgroundColor: '#fff', x: dimensions.width-375, y: -dimensions.height+60+dimensions.height})
+
+    messengerWindow.loadURL(url.format({
+      pathname: path.join(__dirname, 'views/messenger.html'),
+      protocol: 'file:',
+      slashes: true
+    }))
+
+    messengerWindow.webContents.openDevTools()
+
+    messengerWindow.on('closed', function () {
+        connectionWindow = null;
+    })
+})
+
+ipcMain.on('open-messenger-window', function () {
+    if (messengerWindow) {
+        return;
+    }
+
+    welcomeWindow.close()
+    connectionWindow.close()
+
+    let screen = electron.screen.getPrimaryDisplay()
+    let dimensions = screen.workAreaSize
+
+    messengerWindow = new BrowserWindow({width: 340, height: 115, frame: false, backgroundColor: '#fff', x: dimensions.width-375, y: -dimensions.height+60+dimensions.height})
+
+    messengerWindow.loadURL(url.format({
+      pathname: path.join(__dirname, 'views/messenger.html'),
+      protocol: 'file:',
+      slashes: true
+    }))
+
+    messengerWindow.webContents.openDevTools()
+
+    messengerWindow.on('closed', function () {
+        connectionWindow = null;
+    })
+})
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.

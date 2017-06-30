@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hush Messenger</title>
+    <link rel="stylesheet" href="../css/milligram.min.css">
+    <link rel="stylesheet" href="../css/animate.css" />
+    <!-- Material icons font hosted by Google -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,700">
+    <!-- Material icons CSS toolkit -->
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/main.css" />
+  </head>
+  <body>
+    <div class="container loading">
+      <div class="row">
+        <div class="column">
+          <img src="../images/logo_hush_1024.png" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+
+          <i class="fa fa-spinner spinner" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+    <div class="app container welcome animated fadeInRight">
+      <div class="header">
+        <div class="close" v-on:click="quit"><span>X</span></div>
+      </div>
+      <div class="row" style="top: -15px;">
+        <img src="../images/logo_hush_1024.png" />
+      </div>
+      <h3>Hush Messenger</h3>
+      <div class="row">
+        <div class="column">
+          <p>Secure messaging with the zcash protocol</p>
+          <p id="build">Let's get started</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <button class="button-dark" v-on:click="checkConnection">Get connected</p>
+        </div>
+      </div>
+      <div class="footer">
+        &#169; Hush Developers 2017
+      </div>
+    </div>
+  </body>
+  <script>window.$ = window.jQuery = require('./jquery.min.js');</script>
+  <script src='https://unpkg.com/vue'></script>
+  <script>
+    // You can also require other files to run in this process
+    require('../renderer.js')
+
+    const {ipcRenderer} = require('electron')
+    const remote = require('electron').remote
+    const delay = require('delay');
+
+    $(document).ready(function() {
+      delay(2000)
+      .then(() => {
+        if(localStorage.getItem('rpcUser') != null) {
+          ipcRenderer.send('open-messenger-window-startup')
+          remote.getCurrentWindow().close()
+        } else {
+          $(".welcome").toggle()
+          $(".loading").toggle()
+        }
+      })
+    });
+
+    new Vue({
+      el: '.app',
+      data: {
+
+      },
+      methods: {
+        quit: function () {
+          remote.getCurrentWindow().close()
+        },
+        checkConnection: function () {
+          ipcRenderer.send('open-connection-window')
+        }
+      }
+    });
+  </script>
+</html>

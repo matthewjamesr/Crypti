@@ -1,32 +1,38 @@
+$primary-color: #2d2d2d;
+$background-color: #fff;
+
 body {
   font-family: 'Poppins', sans-serif;
-  overflow: hidden; }
+  overflow: hidden;
+}
 
 .button-white {
   background-color: white;
   border-color: white;
-  color: #2d2d2d; }
-
+  color: $primary-color;
+}
 .button-dark {
   background-color: #2d2d2d;
-  border-color: #2d2d2d; }
-
+  border-color: #2d2d2d;
+}
 .button-dark:hover {
-  background-color: #474747; }
-
+  background-color: lighten($primary-color, 10%);
+}
 .button-white.button-clear,
 .button-white.button-outline {
   background-color: transparent;
-  color: white; }
-
+  color: white;
+}
 .button-white.button-clear {
-  border-color: transparent; }
+  border-color: transparent;
+}
 
 .loading {
-  background-color: #fff;
-  color: #2d2d2d;
-  text-align: center; }
-  .loading img {
+  background-color: $background-color;
+  color: $primary-color;
+  text-align: center;
+
+  img {
     height: 300px;
     margin: 0 auto;
     margin-top: 160px;
@@ -40,15 +46,20 @@ body {
     -khtml-user-select: none;
     -moz-user-select: none;
     -o-user-select: none;
-    user-select: none; }
-  .loading i {
+    user-select: none;
+  }
+
+  i {
     margin-top: 70px;
     font-size: 36pt;
-    text-align: center; }
-@keyframes spinner {
-  to {
-    transform: rotate(360deg); } }
-  .loading .spinner:before {
+    text-align: center;
+  }
+
+  @keyframes spinner {
+    to {transform: rotate(360deg);}
+  }
+
+  .spinner:before {
     content: '';
     box-sizing: border-box;
     position: absolute;
@@ -59,35 +70,43 @@ body {
     border-radius: 50%;
     border: 2px solid #ccc;
     border-top-color: #333;
-    animation: spinner .6s linear infinite; }
+    animation: spinner .6s linear infinite;
+  }
+}
 
 .header {
   position: absolute;
   top: 0px;
   left: 0px;
-  width: 100%; }
-  .header .close {
+  width: 100%;
+
+  .close {
     float: right;
-    background-color: #2d2d2d;
+    background-color: $primary-color;
     color: #fff;
     width: 40px;
     height: 40px;
     line-height: 42px;
     font-size: 120%;
     font-weight: 400;
-    cursor: pointer; }
-  .header .close:hover {
-    background-color: #474747; }
+    cursor: pointer;
+  }
+
+  .close:hover {
+    background-color: lighten($primary-color, 10%);
+  }
+}
 
 .welcome {
   display: none;
   width: 100%;
   margin-top: 0px;
   padding: 0px 30px 20px 30px;
-  background-color: #fff;
-  color: #2d2d2d;
-  text-align: center; }
-  .welcome img {
+  background-color: $background-color;
+  color: $primary-color;
+  text-align: center;
+
+  img {
     clear: both;
     height: 150px;
     margin: 100px auto;
@@ -101,59 +120,84 @@ body {
     -khtml-user-select: none;
     -moz-user-select: none;
     -o-user-select: none;
-    user-select: none; }
-  .welcome h3 {
+    user-select: none;
+  }
+
+  h3 {
     margin-bottom: 50px;
-    font-weight: 600; }
-  .welcome p {
+    font-weight: 600;
+  }
+
+  p {
     margin-bottom: 50px;
-    font-weight: 400; }
-  .welcome p#build {
+    font-weight: 400;
+  }
+
+  p#build {
     margin-bottom: 25px;
-    font-weight: 400; }
-  .welcome .footer {
+    font-weight: 400;
+  }
+
+  .footer {
     width: 100%;
     margin-top: 25px;
     font-weight: 300;
-    font-size: 75%; }
+    font-size: 75%;
+  }
+}
 
 .connection {
   width: 100%;
   padding: 20px;
-  background-color: #fff;
-  color: #2d2d2d;
-  text-align: center; }
-  .connection .header {
+  background-color: $background-color;
+  color: $primary-color;
+  text-align: center;
+
+  .header {
     position: absolute;
     top: 0px;
     left: 0px;
-    width: 100%; }
-    .connection .header .logo {
+    width: 100%;
+
+    .logo {
       float: left;
-      height: 40px; }
-    .connection .header .close {
+      height: 40px;
+    }
+
+    .close {
       float: right;
-      background-color: #2d2d2d;
+      background-color: $primary-color;
       color: #fff;
       width: 40px;
       height: 40px;
       line-height: 42px;
       font-size: 120%;
       font-weight: 400;
-      cursor: pointer; }
-    .connection .header .close:hover {
-      background-color: #474747; }
-  .connection p {
-    font-weight: 300; }
-  .connection label {
-    font-weight: 300; }
-  .connection input, .connection input:focus {
-    border-color: #2d2d2d;
-    color: #606060; }
-  .connection code.dark {
-    background-color: #2d2d2d;
-    color: #fff; }
-  .connection button {
-    margin-top: 20px; }
+      cursor: pointer;
+    }
 
-/*# sourceMappingURL=main.css.map */
+    .close:hover {
+      background-color: lighten($primary-color, 10%);
+    }
+  }
+
+  p { font-weight: 300; }
+
+  label {
+    font-weight: 300;
+  }
+
+  input, input:focus {
+    border-color: $primary-color;
+    color: lighten(#2d2d2d, 20%);
+  }
+
+  code.dark {
+    background-color: $primary-color;
+    color: #fff;
+  }
+
+  button {
+    margin-top: 20px;
+  }
+}

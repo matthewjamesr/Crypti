@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Finding Daemon | Hush Messenger</title>
+    <link rel="stylesheet" href="../css/milligram.min.css">
+    <link rel="stylesheet" href="../css/animate.css" />
+    <!-- Material icons font hosted by Google -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,700">
+    <!-- Material icons CSS toolkit -->
+    <link rel="stylesheet" href="../css/material-icons.min.css">
+    <link rel="stylesheet" href="../css/main.css" />
+    <script src='https://unpkg.com/vue'></script>
+    <script src="../jquery-3.2.1.min.js"></script>
+  </head>
+  <body>
+    <div class="app">
+      <div class="container connection">
+        <div class="header">
+          <img class="logo" src="../images/logo_hush_1024.png" />
+          <div class="close" v-on:click="close"><span>X</span></div>
+        </div>
+        <h4>Enter your RPC credentials</h4>
+        <p>This can be found in <code class="dark">hush.conf</code></p>
+        <div class="row">
+          <div class="column">
+            <label>RPC Username</label>
+            <input type="text" v-model="rpcUser" />
+          </div>
+          <div class="column">
+            <label>RPC Password</label>
+            <input type="text" v-model="rpcPass" />
+          </div>
+        </div>
+        <button class="button-dark" v-on:click="checkRPC">Connect</button>
+      </div>
+    </div>
+  </body>
+  <script>
+    // You can also require other files to run in this process
+    require('../renderer.js')
+    const {ipcRenderer} = require('electron')
+    const remote = require('electron').remote
+    var bitcoin = require('bitcoin')
+
+    new Vue({
+      el: '.app',
+      data: {
+        rpcUser: '',
+        rpcPass: ''
+      },
+      methods: {
+        close: function () {
+          remote.getCurrentWindow().close()
+        },
+        checkRPC: function () {
+          var user = this.rpcUser
+          var pass = this.rpcPass
+
+          var client = new bitcoin.Client({
+            host: 'localhost',
+            port: 8822,
+            user: user,
+            pass: pass,
+            timeout: 30000
+          });
+
+          client.cmd('getblockchaininfo', function(err, balance, resHeaders){
+            if (err) {
+              alert(err)
+            } else {
+              localStorage.setItem('rpcPass', pass)
+              localStorage.setItem('rpcUser', user)
+              alert("Connection Success!")
+
+              ipcRenderer.send('open-messenger-window')
+            }
+          });
+        }
+      }
+    });
+  </script>
+</html>
